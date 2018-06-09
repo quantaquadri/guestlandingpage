@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>RANPEA</title>
+<title>RanPea</title>
 <meta charset="utf-8" />
 <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -12,7 +12,7 @@
 
 <div id="site">
 	<header id="masthead">
-		<h1>#FolaShay18 <span class="tagline">Our WishList</span></h1>
+		<h1>#FolaShay18<span class="tagline">Our WishList</h1>
 	</header>
 	<div id="content">
 		<h1>Checkout</h1>
@@ -21,7 +21,7 @@
 				<tr>
 					<th scope="col">Item</th>
 					<th scope="col">Qty</th>
-					<th scope="col"> Unit Price</th>
+					<th scope="col">Unit Price</th>
 				</tr>
 			  </thead>
 			  <tbody>
@@ -29,6 +29,11 @@
 			  </tbody>
 			</table>
 		 <div id="pricing">
+			
+			<p id="shipping">
+				<strong>Shipping</strong>: <span id="sshipping"></span>
+			</p>
+			
 			<p id="sub-total">
 				<strong>Total</strong>: <span id="stotal"></span>
 			</p>
@@ -48,12 +53,12 @@
 		 			<input type="text" name="email" id="email" data-type="expression" data-message="Not a valid email address" />
 		 		</div>
 		 		<div>
-		 			<label for="phone">Phone Number</label>
+		 			<label for="city">Phone Number</label>
 		 			<input type="text" name="phone" id="phone" data-type="string" data-message="This field cannot be empty" />
 		 		</div>
 		 		<div>
-		 			<label for="country">Which Country Are You?</label>
-		 			<input type="text" name="country" id="country" data-type="string" data-message="This field cannot be empty" />
+					 <label for="country">Country</label>
+					 <input type="text" name="country" id="country" data-type="string" data-message="This field cannot be empty" />
 		 		</div>
 		 	</fieldset>
 		 	

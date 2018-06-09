@@ -1,138 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>RANPEA</title>
+<title>RanPea</title>
 <meta charset="utf-8" />
-
- <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
 <script type="text/javascript" src="js/jquery.shop.js"></script>
-
 </head>
-
 
 <body>
 
-<header>
-     
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><<path fill="#ef806d" d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/></svg>
-            <strong>Our WishList</strong>
-          </a>
-        </div>
-      </div>
-    </header>
-
 <div id="site">
-	
 	<header id="masthead">
-		<p><a href="#" style="color: #777;"> << Go Back To Our Wedding Website</a></p><br>
-		<h1>#FolaShay18 <span class="tagline">Our WishList</span></h1>
+		<h1>#FolaShay18<span class="tagline">Our WishList</h1>
 	</header>
 
+	<br>
+	
 	<div id="content">
-
 		<div id="products">
-			
-			<div class="row">
-
-				<div class="col-md-4">
-					<div class="card">
-						
-						<div class="product-image">
-							<img src="images/wine4.jpg" alt="" />
-						</div>
-						<div class="product-description" data-name="Watch" data-price="5000">
-							<h3 class="product-name">Watch</h3>
-							<p class="product-price"><strong>#5,000</strong></p>
-								<form class="add-to-cart" action="cart.html" method="post">
-									<div>
-										<label for="qty-1">Quantity:</label>
-										<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />
-									</div>
-
-									<br>
-										<p><input type="submit" value="Add to cart" class="btn" /></p>
-								</form>
-						</div>
+			<ul>
+				<li>
+					<div class="product-image">
+						<img src="images/wine4.jpg" alt="" />
 					</div>
-				</div>
-
-
-				<div class="col-md-4">
-					<div class="card">
-					
-						<div class="product-image">
-							<img src="images/wine5.jpg" alt="" />
-						</div>
-						<div class="product-description" data-name="Coffee Maker" data-price="8000">
-							<h3 class="product-name">Coffee Maker</h3>
-							<p class="product-price"><strong>#8,000</strong></p>
-								<form class="add-to-cart" action="cart.html" method="post">
-									<div>
-										<label for="qty-2">Quantity:</label>
-										<input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
-									</div>
-
-									<br>
-										<p><input type="submit" value="Add to cart" class="btn" /></p>
-								</form>
-							</div>
+					<div class="product-description" data-name="Wine #1" data-price="5000">
+						<h3 class="product-name">T Shirt</h3>
+						<p class="product-price"><strong> &#8358; 5,000</strong></p>
+						<form class="add-to-cart" action="cart.html" method="post">
+							<div>
+								<label for="qty-1">Quantity:</label>
+								<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />
+							</div><br>
+							<p><input type="submit" value="Add to cart" class="btn" /></p>
+						</form>
 					</div>
-				</div>
-
-
-				<div class="col-md-4">
-					<div class="card">
-					
-						<div class="product-image">
-							<img src="images/wine6.jpg" alt="" />
-						</div>
-						<div class="product-description" data-name="Shopping Gifts" data-price="11000">
-							<h3 class="product-name">Shopping Gifts</h3>
-							<p class="product-price"><strong>#2,000</strong></p>
-								<form class="add-to-cart" action="cart.html" method="post">
-									<div>
-										<label for="qty-3">Quantity:</label>
-										<input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
-									</div>
-
-									<br>
-									<p><input type="submit" value="Add to cart" class="btn" /></p>
-								</form>
-						</div>
+				</li>
+				
+				<li>
+					<div class="product-image">
+						<img src="images/wine5.jpg" alt="" />
 					</div>
-				</div>
-			
-			</div> 			<!-- END OF ROW -->
+					<div class="product-description" data-name="Wine #2" data-price="8000">
+						<h3 class="product-name">Mugs</h3>
+						<p class="product-price"><strong> &#8358; 8,000</strong></p>
+						<form class="add-to-cart" action="cart.html" method="post">
+							<div>
+								<label for="qty-2">Quantity:</label>
+								<input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
+							</div><br>
+							<p><input type="submit" value="Add to cart" class="btn" /></p>
+						</form>
+					</div>
+				</li>
+				
+				<li>
+					<div class="product-image">
+						<img src="images/wine6.jpg" alt="" />
+					</div>
+					<div class="product-description" data-name="Wine #3" data-price="11000">
+						<h3 class="product-name">Chocolate</h3>
+						<p class="product-price"><strong> &#8358; 11,000</strong></p>
+						<form class="add-to-cart" action="cart.html" method="post">
+							<div>
+								<label for="qty-3">Quantity:</label>
+								<input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+							</div><br>
+							<p><input type="submit" value="Add to cart" class="btn" /></p>
+						</form>
+					</div>
+				</li>
+
 
 				
-			
+			</ul>
 		</div>
 	</div>
 	
 	
 
 </div>
-
-
-
-	 <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-slim.min.js"><\/script>')</script>
-
-	<script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/holder.min.js"></script>
 
 </body>
 </html>	

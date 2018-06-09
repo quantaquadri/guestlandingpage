@@ -26,12 +26,14 @@
 			this.$updateCartBtn = this.$shoppingCartActions.find( "#update-cart" ); // Update cart button
 			this.$emptyCartBtn = this.$shoppingCartActions.find( "#empty-cart" ); // Empty cart button
 			this.$userDetails = this.$element.find( "#user-details-content" ); // Element that displays the user information
+			// this.$paypalForm = this.$element.find( "#paypal-form" ); // PayPal form
 			
 			
-			
-			this.currency = "&#8358"; // HTML entity of the currency to be displayed in the layout
+			this.currency = "&#8358;"; // HTML entity of the currency to be displayed in the layout
 			this.currencyString = "#"; // Currency symbol as textual string
-
+			// this.paypalCurrency = "EUR"; // PayPal's currency code
+			// this.paypalBusinessEmail = "yourbusiness@email.com"; // Your Business PayPal's account email address
+			// this.paypalURL = "https://www.sandbox.paypal.com/cgi-bin/webscr"; // The URL of the PayPal's form
 			
 			// Object containing patterns for form validation
 			this.requiredFields = {
@@ -55,6 +57,7 @@
 			this.displayCart();
 			this.deleteProduct();
 			this.displayUserDetails();
+			this.populatePayPalForm();
 			
 			
 		},
@@ -75,6 +78,46 @@
 			}
 		},
 		
+		// Appends the required hidden values to the PayPal's form before submitting
+		
+		populatePayPalForm: function() {
+			var self = this;
+			if( self.$paypalForm.length ) {
+				var $form = self.$paypalForm;
+				var cart = self._toJSONObject( self.storage.getItem( self.cartName ) );
+				var shipping = self.storage.getItem( self.shippingRates );
+				var numShipping = self._convertString( shipping );
+				var cartItems = cart.items; 
+				var singShipping = Math.floor( numShipping / cartItems.length );
+				
+				$form.attr( "action", self.paypalURL );
+				$form.find( "input[name='business']" ).val( self.paypalBusinessEmail );
+				$form.find( "input[name='currency_code']" ).val( self.paypalCurrency );
+				
+				for( var i = 0; i < cartItems.length; ++i ) {
+					var cartItem = cartItems[i];
+					var n = i + 1;
+					var name = cartItem.product;
+					var price = cartItem.price;
+					var qty = cartItem.qty;
+					
+					$( "<div/>" ).html( "<input type='hidden' name='quantity_" + n + "' value='" + qty + "'/>" ).
+					insertBefore( "#paypal-btn" );
+					$( "<div/>" ).html( "<input type='hidden' name='item_name_" + n + "' value='" + name + "'/>" ).
+					insertBefore( "#paypal-btn" );
+					$( "<div/>" ).html( "<input type='hidden' name='item_number_" + n + "' value='SKU " + name + "'/>" ).
+					insertBefore( "#paypal-btn" );
+					$( "<div/>" ).html( "<input type='hidden' name='amount_" + n + "' value='" + self._formatNumber( price, 2 ) + "'/>" ).
+					insertBefore( "#paypal-btn" );
+					$( "<div/>" ).html( "<input type='hidden' name='shipping_" + n + "' value='" + self._formatNumber( singShipping, 2 ) + "'/>" ).
+					insertBefore( "#paypal-btn" );
+					
+				}
+				
+				
+				
+			}
+		},
 		
 		// Displays the user's information
 		
@@ -87,7 +130,7 @@
 					var country = this.storage.getItem( "billing-country" );
 					
 					var html = "<div class='detail'>";
-						html += "<h2>Billing</h2>";
+						html += "<h2>Billing and Shipping</h2>";
 						html += "<ul>";
 						html += "<li>" + name + "</li>";
 						html += "<li>" + email + "</li>";
@@ -96,8 +139,44 @@
 						html += "</ul></div>";
 						
 					this.$userDetails[0].innerHTML = html;
-				} 
-
+				} else {
+					var name = this.storage.getItem( "billing-name" );
+					var email = this.storage.getItem( "billing-email" );
+					var phone = this.storage.getItem( "billing-phone" );
+					var address = this.storage.getItem( "billing-address" );
+					var zip = this.storage.getItem( "billing-zip" );
+					var country = this.storage.getItem( "billing-country" );
+					
+					// var sName = this.storage.getItem( "shipping-name" );
+					// var sEmail = this.storage.getItem( "shipping-email" );
+					// var sCity = this.storage.getItem( "shipping-city" );
+					// var sAddress = this.storage.getItem( "shipping-address" );
+					// var sZip = this.storage.getItem( "shipping-zip" );
+					// var sCountry = this.storage.getItem( "shipping-country" );
+					
+					var html = "<div class='detail'>";
+						html += "<h2>Billing</h2>";
+						html += "<ul>";
+						html += "<li>" + name + "</li>";
+						html += "<li>" + email + "</li>";
+						html += "<li>" + phone + "</li>";
+						html += "<li>" + country + "</li>";
+						html += "</ul></div>";
+						
+						// html += "<div class='detail right'>";
+						// html += "<h2>Shipping</h2>";
+						// html += "<ul>";
+						// html += "<li>" + sName + "</li>";
+						// html += "<li>" + sEmail + "</li>";
+						// html += "<li>" + sCity + "</li>";
+						// html += "<li>" + sAddress + "</li>";
+						// html += "<li>" + sZip + "</li>";
+						// html += "<li>" + sCountry + "</li>";
+						// html += "</ul></div>";
+						
+					this.$userDetails[0].innerHTML = html;	
+				
+				}
 			}
 		},
 
@@ -294,6 +373,12 @@
 						price: price,
 						qty: qty
 					});
+					//we not doing Shipping so this line is not necessary
+					var shipping = self._convertString( self.storage.getItem( self.shippingRates ) );
+					var shippingRates = self._calculateShipping( qty );
+					var totalShipping = shipping + shippingRates;
+					
+					self.storage.setItem( self.shippingRates, totalShipping );
 				});
 			});
 		},
@@ -438,28 +523,26 @@
 		 * @returns shipping Number the shipping rates
 		 */
 		
-		// _calculateShipping: function( qty ) {
-		// 	var shipping = 0;
-		// 	if( qty >= 6 ) {
-		// 		shipping = 10;
-		// 	}
-		// 	if( qty >= 12 && qty <= 30 ) {
-		// 		shipping = 20;	
-		// 	}
+		_calculateShipping: function( qty ) {
+			var shipping = 0;
+			if( qty >= 6 ) {
+				shipping = 10;
+			}
+			if( qty >= 12 && qty <= 30 ) {
+				shipping = 20;	
+			}
 			
-		// 	if( qty >= 30 && qty <= 60 ) {
-		// 		shipping = 30;	
-		// 	}
+			if( qty >= 30 && qty <= 60 ) {
+				shipping = 30;	
+			}
 			
-		// 	if( qty > 60 ) {
-		// 		shipping = 0;
-		// 	}
+			if( qty > 60 ) {
+				shipping = 0;
+			}
 			
-		// 	return shipping;
+			return shipping;
 		
-		// },
-
-
+		},
 		
 		/* Validates the checkout form
 		 * @param form Object the jQuery element of the checkout form
@@ -522,29 +605,25 @@
 					var name = $( "#name", $set ).val();
 					var email = $( "#email", $set ).val();
 					var phone = $( "#phone", $set ).val();
-					// var address = $( "#address", $set ).val();
-					// var zip = $( "#zip", $set ).val();
 					var country = $( "#country", $set ).val();
 					
 					self.storage.setItem( "billing-name", name );
 					self.storage.setItem( "billing-email", email );
 					self.storage.setItem( "billing-phone", phone );
-					// self.storage.setItem( "billing-address", address );
-					// self.storage.setItem( "billing-zip", zip );
 					self.storage.setItem( "billing-country", country );
 				} 
-
+				
 				// else {
 				// 	var sName = $( "#sname", $set ).val();
 				// 	var sEmail = $( "#semail", $set ).val();
-				// 	var sCity = $( "#sphone", $set ).val();
+				// 	var sCity = $( "#scity", $set ).val();
 				// 	var sAddress = $( "#saddress", $set ).val();
 				// 	var sZip = $( "#szip", $set ).val();
 				// 	var sCountry = $( "#scountry", $set ).val();
 					
 				// 	self.storage.setItem( "shipping-name", sName );
 				// 	self.storage.setItem( "shipping-email", sEmail );
-				// 	self.storage.setItem( "shipping-phone", sCity );
+				// 	self.storage.setItem( "shipping-city", sCity );
 				// 	self.storage.setItem( "shipping-address", sAddress );
 				// 	self.storage.setItem( "shipping-zip", sZip );
 				// 	self.storage.setItem( "shipping-country", sCountry );
