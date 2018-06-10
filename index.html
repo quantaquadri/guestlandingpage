@@ -1,85 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
-<title>RanPea</title>
-<meta charset="utf-8" />
-<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.shop.js"></script>
+	<title>RanPea</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="description" content="">
+    <meta name="author" content="">
+
+	 <!-- Bootstrap core CSS -->
+	 <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.shop.js"></script>
+
 </head>
 
 <body>
 
-<div id="site">
-	<header id="masthead">
-		<h1>#FolaShay18<span class="tagline">Our WishList</h1>
-	</header>
-
-	<br>
 	
-	<div id="content">
-		<div id="products">
-			<ul>
-				<li>
-					<div class="product-image">
-						<img src="images/wine4.jpg" alt="" />
-					</div>
-					<div class="product-description" data-name="Wine #1" data-price="5000">
-						<h3 class="product-name">T Shirt</h3>
-						<p class="product-price"><strong> &#8358; 5,000</strong></p>
-						<form class="add-to-cart" action="cart.html" method="post">
-							<div>
-								<label for="qty-1">Quantity:</label>
-								<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />
-							</div><br>
-							<p><input type="submit" value="Add to cart" class="btn" /></p>
-						</form>
-					</div>
-				</li>
-				
-				<li>
-					<div class="product-image">
-						<img src="images/wine5.jpg" alt="" />
-					</div>
-					<div class="product-description" data-name="Wine #2" data-price="8000">
-						<h3 class="product-name">Mugs</h3>
-						<p class="product-price"><strong> &#8358; 8,000</strong></p>
-						<form class="add-to-cart" action="cart.html" method="post">
-							<div>
-								<label for="qty-2">Quantity:</label>
-								<input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
-							</div><br>
-							<p><input type="submit" value="Add to cart" class="btn" /></p>
-						</form>
-					</div>
-				</li>
-				
-				<li>
-					<div class="product-image">
-						<img src="images/wine6.jpg" alt="" />
-					</div>
-					<div class="product-description" data-name="Wine #3" data-price="11000">
-						<h3 class="product-name">Chocolate</h3>
-						<p class="product-price"><strong> &#8358; 11,000</strong></p>
-						<form class="add-to-cart" action="cart.html" method="post">
-							<div>
-								<label for="qty-3">Quantity:</label>
-								<input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
-							</div><br>
-							<p><input type="submit" value="Add to cart" class="btn" /></p>
-						</form>
-					</div>
-				</li>
+    <header>
+      	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" href="#">#FolaShay18</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+					<a class="nav-link" href="#"> << Go Back Home <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+    	</nav>
+    </header>
 
+	<div class="container">
+
+		<div id="site">
+			<header id="masthead">
+				<!-- <h1>#FolaShay18<span class="tagline">Our WishList</h1> -->
+			</header>
+
+			<br>
 
 				
-			</ul>
+					<div id="content">
+						<div id="products">
+							<ul>
+								<div class="row">
+									<div class="col-md-4">
+										<div class="card">							
+											<li>
+												<div class="product-image">
+													<img src="images/wine4.jpg" alt="" />
+												</div>
+												<div class="product-description" data-name="TShirt" data-price="5000">
+													<h3 class="product-name">T Shirt</h3>
+													<p class="product-price"><strong> &#8358; 5,000</strong></p>
+													<form class="add-to-cart" action="cart.html" method="post">
+														<div>
+															<label for="qty-1">Quantity:</label>
+															<input type="text" name="qty-1" id="qty-1" class="qty" value="1" />
+														</div><br>
+														<p><input type="submit" value="Buy With Love" class="btn" /></p>
+													</form>
+												</div>
+											</li>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="card">
+											<li>
+												<div class="product-image">
+													<img src="images/wine5.jpg" alt="" />
+												</div>
+												<div class="product-description" data-name="Mugs" data-price="8000">
+													<h3 class="product-name">Mugs</h3>
+													<p class="product-price"><strong> &#8358; 8,000</strong></p>
+													<form class="add-to-cart" action="cart.html" method="post">
+														<div>
+															<label for="qty-2">Quantity:</label>
+															<input type="text" name="qty-2" id="qty-2" class="qty" value="1" />
+														</div><br>
+														<p><input type="submit" value="Buy With Love" class="btn" /></p>
+													</form>
+												</div>
+											</li>
+										</div>
+									</div>
+								
+									<div class="col-md-4">
+										<div class="card">											
+											<li>
+												<div class="product-image">
+													<img src="images/wine6.jpg" alt="" />
+												</div>
+												<div class="product-description" data-name="Chocolate" data-price="11000">
+													<h3 class="product-name">Chocolate</h3>
+													<p class="product-price"><strong> &#8358; 11,000</strong></p>
+													<form class="add-to-cart" action="cart.html" method="post">
+														<div>
+															<label for="qty-3">Quantity:</label>
+															<input type="text" name="qty-3" id="qty-3" class="qty" value="1" />
+														</div><br>
+														<p><input type="submit" value="Buy With Love" class="btn" /></p>
+													</form>
+												</div>
+											</li>
+										</div>
+									</div>
+								</div>								
+							</ul>
+						</div>
+					</div>
+		</div>
+				
+				
+
 		</div>
 	</div>
-	
-	
 
-</div>
+	<script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/holder.min.js"></script>
 
 </body>
 </html>	
